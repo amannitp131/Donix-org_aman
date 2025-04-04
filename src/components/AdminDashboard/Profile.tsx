@@ -15,7 +15,7 @@ interface UserDetails {
   fullName: string;
   email: string;
   phoneNo: string;
-  [key: string]: any; 
+  [key: string]: unknown; 
 }
 
 
@@ -58,8 +58,10 @@ export default function Profile() {
 
         const data = await response.json();
         setUserDetails(data.user); 
-      } catch (err: any) {
-        setError(err.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          console.error(error.message);
+        }
       } finally {
         setLoading(false);
       }
@@ -76,29 +78,29 @@ export default function Profile() {
     return <p className="text-red-500">Error: {error}</p>;
   }
 
-  const blogs = [
-    {
-      id: 1,
-      title: "My Journey as an Organ Donor",
-      description:
-        "Sharing my experience of becoming an organ donor and how it changed my perspective on life.",
-      date: "March 25, 2025",
-    },
-    {
-      id: 2,
-      title: "Receiving a Life-Saving Organ",
-      description:
-        "A heartfelt story of how an organ transplant gave me a second chance at life.",
-      date: "March 20, 2025",
-    },
-    {
-      id: 3,
-      title: "The Importance of Organ Donation",
-      description:
-        "Why everyone should consider registering as an organ donor and the impact it can have.",
-      date: "March 15, 2025",
-    },
-  ];
+  // const blogs = [
+  //   {
+  //     id: 1,
+  //     title: "My Journey as an Organ Donor",
+  //     description:
+  //       "Sharing my experience of becoming an organ donor and how it changed my perspective on life.",
+  //     date: "March 25, 2025",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Receiving a Life-Saving Organ",
+  //     description:
+  //       "A heartfelt story of how an organ transplant gave me a second chance at life.",
+  //     date: "March 20, 2025",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "The Importance of Organ Donation",
+  //     description:
+  //       "Why everyone should consider registering as an organ donor and the impact it can have.",
+  //     date: "March 15, 2025",
+  //   },
+  // ];
  
 
   return (

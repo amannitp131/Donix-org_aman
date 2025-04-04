@@ -5,10 +5,25 @@ import { IoArrowBack } from "react-icons/io5";
 import { FaFilter, FaTimes, FaHospital, FaMapMarkerAlt, FaStar } from "react-icons/fa";
 import Image from "next/image";
 
+
+interface Hospital {
+  _id: string;
+  hospitalName: string;
+  city: string;
+  state: string;
+  country: string;
+  pincode: string;
+  contactNumber: string;
+  email: string;
+  website: string;
+  authorisedPersonName: string;
+  authorisedPersonDesignation: string;
+}
+
 const Page = () => {
   const [darkMode, setDarkMode] = useState(false);
-  const [hospitals, setHospitals] = useState([]); // Initialize hospitals as an empty array
-  const [filteredHospitals, setFilteredHospitals] = useState([]);
+  const [hospitals, setHospitals] = useState<Hospital[]>([]);
+  const [filteredHospitals, setFilteredHospitals] = useState<Hospital[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -29,8 +44,12 @@ const Page = () => {
         const data = await response.json();
         setHospitals(data);
         setFilteredHospitals(data); // Set filteredHospitals to the fetched data
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred.");
+        }
       } finally {
         setLoading(false);
       }
@@ -41,7 +60,7 @@ const Page = () => {
 
   const filterByArea = (area: string) => {
     setFilteredHospitals(
-      hospitals.filter((hospital: any) => hospital.city === area)
+      hospitals.filter((hospital: Hospital) => hospital.city === area)
     );
     setShowDropdown(false);
   };
@@ -68,7 +87,7 @@ const Page = () => {
   }
 
   // Extract unique cities dynamically for the dropdown
-  const uniqueCities = [...new Set(hospitals.map((hospital: any) => hospital.city))];
+  const uniqueCities = [...new Set(hospitals.map((hospital: Hospital) => hospital.city))];
 
   return (
     <div
@@ -139,7 +158,7 @@ const Page = () => {
           ref={cardsRef}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {filteredHospitals.map((hospital: any) => (
+          {filteredHospitals.map((hospital: Hospital) => (
             <div
               key={hospital._id}
               className={`border rounded-lg shadow-lg p-4 flex flex-col justify-between ${
@@ -148,12 +167,12 @@ const Page = () => {
             >
               {/* Hospital Image */}
               <Image
-                src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAwZzRQ7tsDjsz2-eE_Dw6b9A9uO5sGxQxHA&s" || "/placeholder-image.jpg"} // Use a placeholder if no image is provided
-                alt={hospital.hospitalName}
-                width={600}
-                height={200}
-                className="h-40 w-full object-cover rounded-t-lg"
-              />
+  src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAwZzRQ7tsDjsz2-eE_Dw6b9A9uO5sGxQxHA&s"}
+  alt={hospital.hospitalName}
+  width={600}
+  height={200}
+  className="h-40 w-full object-cover rounded-t-lg"
+/>
               <div className="mt-4">
                 <h3 className="text-lg font-semibold flex items-center">
                   <FaHospital className="text-blue-500 mr-2" />

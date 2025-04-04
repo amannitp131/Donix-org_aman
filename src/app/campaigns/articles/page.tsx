@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 
 // Defining a TypeScript interface for each blog
 interface Blog {
@@ -40,9 +39,13 @@ const Page: React.FC = () => {
         }
         const data = await response.json();
         setBlogs(data.articles); // Set blogs to the fetched articles
-      } catch (err: any) {
-        setError(err.message);
-      } finally {
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred.");
+        }
+      }finally {
         setLoading(false);
       }
     };

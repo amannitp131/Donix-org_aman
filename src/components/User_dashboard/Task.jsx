@@ -12,8 +12,8 @@ export const Task = () => {
     feedback: "",
   });
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
   const [darkMode, setDarkMode] = useState(false);
 
   const handleChange = (

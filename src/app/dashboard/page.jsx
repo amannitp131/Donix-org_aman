@@ -9,7 +9,7 @@ import { RiFindReplaceLine } from "react-icons/ri";
 import { VscLayoutActivitybarLeft } from "react-icons/vsc";
 import { AiOutlineAccountBook } from "react-icons/ai";
 import { IoIosChatbubbles } from "react-icons/io";
-import { MdOutlineWorkHistory, MdDomainVerification } from "react-icons/md";
+import { MdOutlineWorkHistory } from "react-icons/md";
 import { IoMdLogOut, IoMdClose } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import Profile from "../../components/User_dashboard/Profile";

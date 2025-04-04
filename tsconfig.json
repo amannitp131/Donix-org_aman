@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/not-found.jsx", "src/components/User_dashboard/Chat.jsx", "src/app/AdminRegistration/page.tsx", "src/app/HospitalRegistration/page.jsx", "src/components/User_dashboard/Account.tsx", "src/components/User_dashboard/Task.jsx", "src/components/User_dashboard/Activity.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/not-found.jsx", "src/components/User_dashboard/Chat.jsx", "src/app/AdminRegistration/page.tsx", "src/app/HospitalRegistration/page.jsx", "src/components/User_dashboard/Account.tsx", "src/components/User_dashboard/Task.jsx", "src/components/User_dashboard/Activity.jsx", "src/app/hospitalDashboard/page.jsx", "src/app/dashboard/page.jsx", "src/components/User_dashboard/Add.jsx"],
   "exclude": ["node_modules"]
 }

@@ -6,6 +6,7 @@ import Cookies from "js-cookie";
 import axios from "axios"; // Import axios
 import { toast } from "react-toastify"; // Import toast
 import "react-toastify/dist/ReactToastify.css"; // Import toast styles
+import Image from "next/image";
 
 const Profile = () => {
   const [darkMode, setDarkMode] = useState(false);

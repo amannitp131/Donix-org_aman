@@ -15,7 +15,7 @@ interface UserDetails {
   fullName: string;
   email: string;
   phoneNo: string;
-  [key: string]: any;
+  [key: string]: unknown;
   createdAt: Date;
 }
 interface Blog {
@@ -23,6 +23,7 @@ interface Blog {
   title: string;
   description: string;
   date: string;
+  createdAt: string;
 }
 
 export default function Account() {
@@ -61,8 +62,12 @@ export default function Account() {
 
         const data = await response.json();
         setUserDetails(data.user);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred.");
+        }
       } finally {
         setLoading(false);
       }
@@ -93,8 +98,12 @@ export default function Account() {
 
         const data = await response.json();
         setBlogs(data.blogs);
-      } catch (err: any) {
-        setError(err.message);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("An unknown error occurred.");
+        }
       } finally {
         setLoading(false);
       }

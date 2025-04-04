@@ -6,7 +6,7 @@ import { RiFindReplaceLine } from "react-icons/ri";
 import { VscLayoutActivitybarLeft } from "react-icons/vsc";
 // import { AiOutlineAccountBook } from "react-icons/ai";
 // import { IoIosChatbubbles } from "react-icons/io";
-import { MdOutlineWorkHistory, MdDomainVerification } from "react-icons/md";
+import {  MdDomainVerification } from "react-icons/md";
 import { IoMdLogOut, IoMdClose } from "react-icons/io";
 import { FiMenu } from "react-icons/fi";
 import Profile from "../../components/Hospital_Dashboard/Profile";
@@ -196,7 +196,9 @@ const Dashboard = () => {
               className="flex items-center gap-4 text-gray-700 dark:text-gray-300 font-medium hover:text-blue-500 dark:hover:text-blue-400 transition duration-300 cursor-pointer"
             >
               <FaUserCircle className="text-2xl text-gray-500 dark:text-gray-400" />
-              <span className="text-lg">{hospitalDetails.hospitalName}</span>
+              <span className="text-lg">
+  {hospitalDetails ? hospitalDetails.hospitalName : "Loading..."}
+</span>
             </li>
             <li
               onClick={() => {
