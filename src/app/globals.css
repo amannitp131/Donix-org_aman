@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Remove or fix the invalid rule */
+.bg-\[url\(\'\'\)\] {
+  /* background-image: url(''); */ /* Remove this line or replace with a valid URL */
+}
+

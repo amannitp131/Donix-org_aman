@@ -1,0 +1,253 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap");
+
+/* Default Light Mode Custom Properties */
+:root {
+	--yellow: #ffdd40;
+	--dark: #2f313a;
+	--deg: -86deg;
+	--trans: all 0.4s ease 0s;
+	--bg-light: #ffffff;
+	--text-light: #2f313a;
+}
+
+/* Dark Mode Custom Properties */
+[data-theme='dark'] {
+	--yellow: #363531;
+	--dark: #1a1a1a;
+	--deg: -86deg;
+	--trans: all 0.4s ease 0s;
+	--bg-light: #131417;
+	--text-light: #e0e0e0;
+}
+
+/* General .campaign_page Styling */
+.campaign_page {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	display: flex;
+	justify-content: center;
+	font-family: "Lato", Arial, Helvetica, serif;
+	font-size: 1em;
+	color: var(--text-light);
+}
+
+/* Box Model for All Elements */
+.campaign_page *,
+.campaign_page *:before,
+.campaign_page *:after {
+	box-sizing: border-box;
+}
+
+/* Main Content Wrapper */
+.campaign_page .content {
+	width: 90vmin;
+}
+
+/* Team Section */
+.campaign_page h2 {
+	text-align: center;
+}
+
+.campaign_page .team {
+	padding: 2em 0 2em 2.5em;
+	margin: 0;
+}
+
+/* Member Styling */
+.campaign_page .member {
+	margin: 1.5em 0 0.5em;
+	padding: 0.73em;
+	background: linear-gradient(83deg, var(--yellow) 0 97%, #fff0 calc(97% + 1px) 100%);
+	position: relative;
+	list-style: none;
+	display: inline-block;
+	transform: scale(0.85);
+	transition: var(--trans);
+}
+
+.campaign_page .member:nth-of-type(even) {
+	text-align: right;
+	background: linear-gradient(-83deg, var(--yellow) 0 97%, #fff0 calc(97% + 1px) 100%);
+}
+
+.campaign_page .thumb {
+	width: 13vmin;
+	height: 13vmin;
+	float: left;
+	margin-right: 1.25em;
+	background: linear-gradient(var(--deg), var(--dark) 0 70%, var(--yellow) 0% 100%);
+	transform: rotate(-4deg);
+	transition: var(--trans);
+	border-radius: 0.25em;
+	overflow: hidden;
+	margin-left: -3em;
+	padding: 0.5em;
+}
+
+.campaign_page .member:nth-of-type(even) .thumb {
+	--deg: 86deg;
+	float: right;
+	margin-left: 2em;
+	margin-right: -3em;
+	transform: rotate(4deg);
+}
+
+/* Thumb Image Styling */
+.campaign_page .thumb img {
+	width: 100%;
+	height: 100%;
+	border-radius: 0.25em;
+	filter: grayscale(1);
+	background: var(--dark);
+}
+
+/* Member Hover Effects */
+.campaign_page .member:hover {
+	transform: scale(1);
+	transition: var(--trans);
+	filter: drop-shadow(0px 20px 10px #0008);
+}
+
+.campaign_page .member:hover .thumb {
+	padding: 0.1em;
+	transition: var(--trans);
+	transform: rotate(-1deg);
+	--deg: -89deg;
+}
+
+.campaign_page .member:nth-of-type(even):hover .thumb {
+	--deg: 91deg;
+}
+
+.campaign_page .member:hover .thumb img {
+	filter: none;
+	transition: var(--trans);
+}
+
+/* Description Section Styling */
+.campaign_page .description {
+	padding-top: 1vmin;
+}
+
+.campaign_page .description p {
+	padding: 0 2em;
+	margin-bottom: 1em;
+}
+
+.campaign_page h3 {
+	background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
+	display: inline;
+	transform: rotate(-2deg);
+	position: absolute;
+	margin: 0;
+	margin-top: -2.5em;
+	left: 9vmin;
+	padding: 0.5em 0.75em;
+	color: var(--yellow);
+	border-radius: 0.25em;
+	font-size: 1.35em;
+	transform-origin: left bottom;
+}
+
+.campaign_page .member:nth-of-type(even) h3 {
+	left: inherit;
+	right: 9vmin;
+	transform: rotate(2deg);
+	transform-origin: right bottom;
+	background: linear-gradient(-182deg, #fff0 60%, var(--dark) 0 100%);
+}
+
+.campaign_page .member:hover h3 {
+	transition: var(--trans);
+	transform: rotate(0deg);
+	background: linear-gradient(180deg, #fff0 59%, var(--dark) 0 100%);
+}
+
+/* Co-Funder Badge Styling */
+.campaign_page .co-funder:after {
+	content: "CO-FUNDER";
+	font-size: 0.75em;
+	position: absolute;
+	top: -1.5em;
+	background: var(--yellow);
+	right: 4em;
+	transform: rotate(3deg);
+	padding: 0.35em 0.75em 0.5em;
+	border-radius: 0.25em;
+	color: var(--dark);
+	font-weight: bold;
+}
+
+.campaign_page .co-funder:nth-of-type(even):after {
+	right: inherit;
+	left: 4em;
+	transform: rotate(-3deg);
+}
+
+/* Link Styling in Description */
+.campaign_page .description p a {
+	display: inline-block;
+	margin: 0.5em 0 0 0;
+	background: var(--dark);
+	color: var(--yellow);
+	padding: 0.1em 0.5em 0.35em;
+	border-radius: 0.5em;
+	text-decoration: none;
+	transition: var(--trans);
+}
+
+.campaign_page .description p a:hover {
+	transition: var(--trans);
+	color: var(--dark);
+	background: var(--yellow);
+	font-weight: bold;
+}
+
+/* Link Image Styling */
+.campaign_page .description p a img {
+	float: left;
+	width: 22px;
+	filter: invert(1);
+	border-radius: 0.15em;
+	padding: 2px;
+	background: #fff;
+	margin-right: 2px;
+}
+
+/* Dark Mode Overrides */
+[data-theme='dark'] .member {
+	background: linear-gradient(83deg, var(--yellow) 0 97%, #fff0 calc(97% + 1px) 100%);
+}
+
+[data-theme='dark'] .thumb {
+	background: linear-gradient(var(--deg), var(--dark) 0 70%, var(--yellow) 0% 100%);
+}
+
+[data-theme='dark'] .thumb img {
+	background: var(--dark);
+	filter: grayscale(0);
+}
+
+[data-theme='dark'] h3 {
+	background: linear-gradient(182deg, #fff0 60%, var(--dark) 0 100%);
+	color: var(--yellow);
+}
+
+[data-theme='dark'] .description p a {
+	background: var(--dark);
+	color: var(--yellow);
+}
+
+[data-theme='dark'] .description p a:hover {
+	color: var(--dark);
+	background: var(--yellow);
+	font-weight: bold;
+}
+
+[data-theme='dark'] .co-funder:after {
+	background: var(--yellow);
+	color: var(--dark);
+}
+

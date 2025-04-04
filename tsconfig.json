@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/not-found.jsx", "src/components/User_dashboard/Chat.jsx", "src/app/AdminRegistration/page.tsx", "src/app/HospitalRegistration/page.jsx", "src/components/User_dashboard/Account.tsx", "src/components/User_dashboard/Task.jsx", "src/components/User_dashboard/Activity.jsx"],
+  "exclude": ["node_modules"]
+}
