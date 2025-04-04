@@ -10,7 +10,6 @@ import {
 } from "react-icons/ai";
 import Cookies from "js-cookie";
 import axios from "axios";
-import NextImage from "next/image";
 
 export default function Activity() {
   const [darkMode, setDarkMode] = useState(false);
@@ -31,7 +30,6 @@ export default function Activity() {
     imageUrl: "",
     donationLink: "",
   });
-
 
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
@@ -181,16 +179,7 @@ export default function Activity() {
               Organ Requests
             </h2>
             {loading ? (
-          
-                   <div className="flex justify-center items-center min-h-screen">
-                     <Image
-                       src="/Laoder_animation.gif"
-                       alt="Loading..."
-                       width={200}
-                       height={200}
-                       className="mx-auto"
-                     />
-                   </div>
+              <p>Loading...</p>
             ) : error ? (
               <p className="text-red-500">{error}</p>
             ) : (
