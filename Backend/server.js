@@ -50,10 +50,9 @@ const OrganRequest = require("./models/OrganRequest");
 
 app.use(
   cors({
-    origin: "*", // Allow all origins
+    origin: "*", 
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies and credentials
-    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
+    credentials: true, 
   })
 );
 
