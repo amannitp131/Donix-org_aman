@@ -103,7 +103,7 @@ const Footer: React.FC<FooterProps> = ({ darkMode }) => {
             <div>
               <div className="mb-4">
                 <Image
-                  src="https://i.postimg.cc/8kdzwwx4/pngwing-com.png"
+                  src="/footer.jpeg"
                   alt="Logo"
                   width={150}
                   height={75}
@@ -111,9 +111,9 @@ const Footer: React.FC<FooterProps> = ({ darkMode }) => {
                 />
               </div>
               <p className={textColor}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
+  We are here to revolutionizing organ donation by connecting donors and recipients seamlessly. And create a platform that fosters awareness, simplifies the donation process, and ensures transparency. 
+ 
+</p>
               <div className="mt-4 flex space-x-4">
                 <a
                   href="#"

@@ -1,27 +1,29 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
-import "./cards.css";
 
 const items = [
-  { id: 1, name: "Codepen", color: "#0D6EFD", icon: "fa-codepen", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, impedit?" },
-  { id: 2, name: "HTML 5", color: "#6710F5", icon: "fa-html5", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit." },
-  { id: 3, name: "CSS 3", color: "#6F42C1", icon: "fa-css3", description: "Lorem ipsum dolor sit." },
-  { id: 4, name: "Javascript", color: "#D63384", icon: "fa-js", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor laboriosam odio alias." },
-  { id: 5, name: "Github", color: "#DC3545", icon: "fa-github", description: "Lorem ipsum dolor sit amet consectetur adipisicing elit." },
-  { id: 6, name: "React", color: "#61DAFB", icon: "fa-react", description: "A JavaScript library for building user interfaces." },
-  { id: 7, name: "Node.js", color: "#68A063", icon: "fa-node", description: "JavaScript runtime built on Chrome's V8 engine." },
+  { id: 1, name: "Save the Children", color: "#FF5733", icon: "fa-hand-holding-heart", description: "An NGO dedicated to improving the lives of children through education, healthcare, and protection." },
+  { id: 2, name: "World Wildlife Fund", color: "#4CAF50", icon: "fa-paw", description: "Focused on wildlife conservation and reducing the impact of human activities on the environment." },
+  { id: 3, name: "Doctors Without Borders", color: "#2196F3", icon: "fa-user-md", description: "Provides medical aid to people affected by conflict, epidemics, and disasters." },
+  { id: 4, name: "Greenpeace", color: "#8BC34A", icon: "fa-leaf", description: "An environmental NGO working to combat climate change and promote renewable energy." },
+  { id: 5, name: "Red Cross", color: "#F44336", icon: "fa-first-aid", description: "Provides emergency assistance, disaster relief, and education in communities worldwide." },
+  { id: 6, name: "Habitat for Humanity", color: "#FF9800", icon: "fa-home", description: "Helps build affordable housing for families in need." },
+  { id: 7, name: "Charity: Water", color: "#03A9F4", icon: "fa-tint", description: "Brings clean and safe drinking water to people in developing countries." },
 ];
 
 export default function ResponsiveCardSlider() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [visibleCards, setVisibleCards] = useState(3); // Number of visible cards
-  const [startIndex, setStartIndex] = useState(0); // Current start index for visible cards
+  const [startIndex, setStartIndex] = useState(0); 
+  const [darkMode, setDarkMode] = useState(false);
   const cardWidth = 250; // Fixed card width
-  const gap = 20; // Gap between cards
+  const gap = 20; // Gap between card
 
   // Adjust the number of visible cards based on screen width
   useEffect(() => {
+    const storedDarkMode = localStorage.getItem("darkMode");
+    setDarkMode(storedDarkMode === "1");
     const updateVisibleCards = () => {
       const containerWidth = scrollRef.current?.offsetWidth || window.innerWidth;
       setVisibleCards(Math.floor(containerWidth / (cardWidth + gap)));
@@ -44,121 +46,80 @@ export default function ResponsiveCardSlider() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      {/* Heading Section */}
-      <div
-        style={{
-          position: "sticky",
-          top: "0",
-          background: "#fff",
-          zIndex: 10,
-          padding: "10px 0",
-          textAlign: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <h1 style={{ fontSize: "2rem", fontWeight: "bold", color: "#333" }}>NGO Associated</h1>
-        <div
-          style={{
-            width: "180px", // Horizontal line width
-            height: "3px", // Horizontal line height
-            backgroundColor: "#007BFF",
-            margin: "8px auto 0", // Center the line below the heading
-            borderRadius: "4px",
-          }}
-        ></div>
-      </div>
+    <div className={`p-6 w-screen h-screen ${darkMode ? "bg-gray-900 text-white" : "bg-white text-gray-900"}`}>
+  {/* Heading Section */}
+  <div
+    className={`sticky top-0 z-10 text-center mb-6 ${
+      darkMode ? "bg-gray-900" : "bg-white"
+    }`}
+  >
+    <h1 className="text-3xl font-bold">
+      NGO Associated
+    </h1>
+    <div
+      className={`w-24 h-1 mx-auto mt-2 rounded ${
+        darkMode ? "bg-blue-300" : "bg-blue-500"
+      }`}
+    ></div>
+  </div>
 
-      {/* Scrollable List Section */}
-      <div style={{ display: "flex", alignItems: "center", position: "relative", overflow: "hidden" }}>
-        {/* Left Scroll Button */}
-        <button
-          onClick={() => scroll("left")}
-          disabled={startIndex === 0}
-          style={{
-            position: "absolute",
-            left: "10px",
-            background: "#007BFF",
-            color: "#fff",
-            border: "none",
-            borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            cursor: "pointer",
-            fontSize: "1.5rem",
-            zIndex: 1,
-          }}
-        >
-          ❮
-        </button>
+  {/* Scrollable List Section */}
+  <div className="relative flex items-center overflow-hidden">
+    {/* Left Scroll Button */}
+    <button
+      onClick={() => scroll("left")}
+      disabled={startIndex === 0}
+      className={`absolute left-2 rounded-full w-10 h-10 flex items-center justify-center text-lg z-10 ${
+        startIndex === 0
+          ? "opacity-50 cursor-not-allowed"
+          : darkMode
+          ? "bg-blue-300 text-gray-900 hover:bg-blue-400"
+          : "bg-blue-500 text-white hover:bg-blue-600"
+      }`}
+    >
+      ❮
+    </button>
 
-        {/* Scrollable List */}
-        <div
-          ref={scrollRef}
-          style={{
-            display: "flex",
-            gap: `${gap}px`,
-            overflow: "hidden",
-            width: "100%",
-            transition: "transform 0.5s ease-in-out",
-            transform: `translateX(-${startIndex * (cardWidth + gap)}px)`, // Dynamically shift the container
-          }}
-        >
-          {items.map((item) => (
-            <div
-              key={item.id}
-              style={{
-                width: `${cardWidth}px`,
-                background: "#fff",
-                padding: "20px",
-                textAlign: "center",
-                borderRadius: "10px",
-                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
-                flexShrink: 0, // Prevent shrinking of cards
-              }}
-            >
-              <i
-                className={`fa-brands ${item.icon}`}
-                style={{ fontSize: "2rem", marginBottom: "8px", color: item.color }}
-              ></i>
-              <div style={{ fontSize: "1.25rem", fontWeight: "bold", marginBottom: "8px" }}>{item.name}</div>
-              <div
-                style={{
-                  fontSize: "0.875rem",
-                  color: "#666",
-                  overflow: "hidden",
-                  textOverflow: "ellipsis",
-                  wordWrap: "break-word",
-                  maxHeight: "80px",
-                }}
-              >
-                {item.description}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Right Scroll Button */}
-        <button
-          onClick={() => scroll("right")}
-          disabled={startIndex + visibleCards >= items.length}
-          style={{
-            position: "absolute",
-            right: "10px",
-            background: "#007BFF",
-            color: "#fff",
-            border: "none",
-            borderRadius: "50%",
-            width: "40px",
-            height: "40px",
-            cursor: "pointer",
-            fontSize: "1.5rem",
-            zIndex: 1,
-          }}
-        >
-          ❯
-        </button>
-      </div>
+    {/* Scrollable List */}
+    <div
+  ref={scrollRef}
+  className="flex gap-5 overflow-hidden w-full transition-transform duration-500"
+  style={{
+    transform: `translateX(-${startIndex * (cardWidth + gap)}px)`,
+  }}
+>
+  {items.map((item) => (
+    <div
+      key={item.id}
+      className={`w-[250px] p-6 text-center rounded-lg shadow-md flex-shrink-0 ${
+        darkMode ? "bg-gray-800 text-white" : "bg-white text-gray-900"
+      }`}
+    >
+      <i
+        className={`fa-brands ${item.icon}`}
+        style={{ fontSize: "2rem", marginBottom: "8px", color: item.color }}
+      ></i>
+      <div className="text-lg font-semibold mb-2">{item.name}</div>
+      <div className="text-sm">{item.description}</div>
     </div>
+  ))}
+</div>
+
+    {/* Right Scroll Button */}
+    <button
+      onClick={() => scroll("right")}
+      disabled={startIndex + visibleCards >= items.length}
+      className={`absolute right-2 rounded-full w-10 h-10 flex items-center justify-center text-lg z-10 ${
+        startIndex + visibleCards >= items.length
+          ? "opacity-50 cursor-not-allowed"
+          : darkMode
+          ? "bg-blue-300 text-gray-900 hover:bg-blue-400"
+          : "bg-blue-500 text-white hover:bg-blue-600"
+      }`}
+    >
+      ❯
+    </button>
+  </div>
+</div>
   );
 }

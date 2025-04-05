@@ -32,7 +32,7 @@ const Dashboard = () => {
     setDarkMode(storedDarkMode === "1");
     const fetchHospitalDetails = async () => {
       try {
-        const token = Cookies.get("token"); // Retrieve token from localStorage
+        const token = Cookies.get("token"); 
         if (!token) throw new Error("No token found");
 
         const response = await fetch(
