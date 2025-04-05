@@ -48,7 +48,7 @@ const OrganRequest = require("./models/OrganRequest");
 
 app.use(
   cors({
-    origin: "http://localhost:4000", // Allow requests from the frontend
+    origin: "*", 
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true, // Allow cookies if needed
   })
