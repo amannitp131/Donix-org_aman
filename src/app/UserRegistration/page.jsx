@@ -54,7 +54,7 @@ export default function UserRegistrationForm() {
       // Delay before sending OTP
       await new Promise((resolve) => setTimeout(resolve, 3000)); // 3-second delay
 
-      const response = await axios.post("https://donix-org-aman.onrender.com/send-otp", {
+      const response = await axios.post("http://localhost:10000/send-otp", {
         email,
       });
       toast.success(
@@ -99,7 +99,7 @@ export default function UserRegistrationForm() {
     try {
       // Register the user
       const response = await axios.post(
-        "https://donix-org-aman.onrender.com/userRegistration",
+        "http://localhost:10000/userRegistration",
         formData,
         {
           headers: {

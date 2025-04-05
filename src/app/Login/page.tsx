@@ -16,7 +16,7 @@ const Login: React.FC = () => {
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
     setDarkMode(storedDarkMode === "1");
-  }, [])
+  }, []);
 
   const handleLogin = async () => {
     if (!email || !password || !role) {
@@ -26,7 +26,7 @@ const Login: React.FC = () => {
   
     setLoading(true);
     try {
-      const response = await fetch("https://donix-org-aman.onrender.com/login", {
+      const response = await fetch("http://localhost:5000/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const Login: React.FC = () => {
         toast.error(`Login failed: ${errorData.error || "Unknown error"}`);
         setTimeout(() => {
           window.location.href = "/";
-        }, 3000); // Redirect to / after 3 seconds
+        }, 3000); // Redirect to `/` after 3 seconds
         setLoading(false);
         return;
       }
@@ -66,7 +66,7 @@ const Login: React.FC = () => {
       toast.error("An error occurred. Redirecting to the home page...");
       setTimeout(() => {
         window.location.href = "/";
-      }, 3000); // Redirect to / after 3 seconds
+      }, 3000); // Redirect to `/` after 3 seconds
     } finally {
       setLoading(false);
     }

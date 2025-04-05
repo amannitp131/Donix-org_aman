@@ -24,7 +24,7 @@ const OrganDonationTab = () => {
       if (!token) throw new Error("Authorization token is missing.");
 
       const response = await axios.get(
-        "https://donix-org-aman.onrender.com/getHospitalAppointments",
+        "http://localhost:10000/getHospitalAppointments",
         {
           headers: { authorization: `Bearer ${token}` },
         }
@@ -43,7 +43,7 @@ const OrganDonationTab = () => {
       if (!token) throw new Error("Authorization token is missing.");
 
       const response = await axios.get(
-        "https://donix-org-aman.onrender.com/getAllRequestedOrgan",
+        "http://localhost:10000/getAllRequestedOrgan",
         {
           headers: { authorization: `Bearer ${token}` },
         }
@@ -86,7 +86,7 @@ const OrganDonationTab = () => {
       if (!token) throw new Error("Authorization token is missing.");
 
       const response = await axios.put(
-        `https://donix-org-aman.onrender.com/approveAppointment/${appointmentId}`,
+        `http://localhost:10000/approveAppointment/${appointmentId}`,
         {},
         { headers: { authorization: `Bearer ${token}` } }
       );
@@ -109,7 +109,7 @@ const OrganDonationTab = () => {
       if (!token) throw new Error("Authorization token is missing.");
 
       const response = await axios.put(
-        `https://donix-org-aman.onrender.com/approveRequest/${requestId}`,
+        `http://localhost:10000/approveRequest/${requestId}`,
         {},
         { headers: { authorization: `Bearer ${token}` } }
       );

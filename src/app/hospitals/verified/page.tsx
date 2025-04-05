@@ -37,7 +37,7 @@ const Page = () => {
 
     const fetchHospitals = async () => {
       try {
-        const response = await fetch("https://donix-org-aman.onrender.com/allHospitals");
+        const response = await fetch("http://localhost:10000/allHospitals");
         if (!response.ok) {
           throw new Error("Failed to fetch hospitals");
         }

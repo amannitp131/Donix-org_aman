@@ -43,7 +43,7 @@ export default function Profile() {
         }
 
         // Make the API request to fetch user details
-        const response = await fetch("https://donix-org-aman.onrender.com/getDetails", {
+        const response = await fetch("http://localhost:10000/getDetails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

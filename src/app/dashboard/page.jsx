@@ -42,7 +42,7 @@ const Dashboard = () => {
         if (!token) throw new Error("No token found");
 
         const response = await axios.post(
-          "https://donix-org-aman.onrender.com/getDetails",
+          "http://localhost:10000/getDetails",
           {},
           {
             headers: { Authorization: `Bearer ${token}` },

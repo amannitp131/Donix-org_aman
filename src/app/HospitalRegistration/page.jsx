@@ -79,7 +79,7 @@ export default function UserRegistrationForm() {
     try {
       // Register the user
       const response = await axios.post(
-        "https://donix-org-aman.onrender.com/hospitalRegistration",
+        "http://localhost:10000/hospitalRegistration",
         formData,
         {
           headers: {

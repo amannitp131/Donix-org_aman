@@ -43,7 +43,7 @@ export default function Activity() {
           return;
         }
   
-        const response = await axios.get("https://donix-org-aman.onrender.com/allOrganData", {
+        const response = await axios.get("http://localhost:10000/allOrganData", {
           headers: {
             authorization: `Bearer ${token}`,
           },
@@ -71,7 +71,7 @@ export default function Activity() {
       }
 
       const response = await axios.post(
-        "https://donix-org-aman.onrender.com/addWebinar",
+        "http://localhost:10000/addWebinar",
         webinar,
         {
           headers: {
@@ -99,7 +99,7 @@ export default function Activity() {
         return;
       }
 
-      const response = await axios.post("https://donix-org-aman.onrender.com/addBlog", blog, {
+      const response = await axios.post("http://localhost:10000/addBlog", blog, {
         headers: {
           authorization: `Bearer ${token}`,
         },

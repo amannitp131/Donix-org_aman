@@ -25,7 +25,7 @@ const Available = () => {
         return;
       }
 
-      const response = await fetch("https://donix-org-aman.onrender.com/addorgan", {
+      const response = await fetch("http://localhost:10000/addorgan", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

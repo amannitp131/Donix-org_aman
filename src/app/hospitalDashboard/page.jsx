@@ -36,7 +36,7 @@ const Dashboard = () => {
         if (!token) throw new Error("No token found");
 
         const response = await fetch(
-          "https://donix-org-aman.onrender.com/getHospitalDetails",
+          "http://localhost:10000/getHospitalDetails",
           {
             headers: {
               Authorization: `Bearer ${token}`,

@@ -10,6 +10,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const { ObjectId } = require("mongodb");
 const bodyParser = require("body-parser");
+const { HfInference } = require("@huggingface/inference");
 
 
 
@@ -18,7 +19,6 @@ const bodyParser = require("body-parser");
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
-
 
 
 const server = http.createServer(app); 
@@ -46,13 +46,11 @@ const Appointment = require("./models/appointment");
 const OrganRequest = require("./models/OrganRequest");
 
 
-
-
 app.use(
   cors({
-    origin: "*", 
+    origin: "http://localhost:4000", // Allow requests from the frontend
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, 
+    credentials: true, // Allow cookies if needed
   })
 );
 
@@ -95,7 +93,7 @@ app.post("/sendMail", async (req, res) => {
 
     const mailOptions = {
       from: userEmail,
-      to: ["hellocollege143@gmail.com", userEmail], 
+      to: ["hellocollege143@gmail.com", userEmail], // Sends to both predefined and user email
       subject: "Your Mail",
       text: msg,
     };
@@ -106,6 +104,9 @@ app.post("/sendMail", async (req, res) => {
     res.status(500).json({ error: "Failed to send email", details: error.message });
   }
 });
+
+
+
 
 
 app.post('/send-otp', async (req, res) => {
@@ -855,12 +856,8 @@ app.get("/getVerifiedWebinar",async(req,res)=>{
     const verifiedWebinar=await Webinar.find({isVerified:true});
     return res.status(200).json({message:"list of verified webinars",verifiedWebinar});
 
-  }catch (error) {
-    console.error("Error fetching verified webinars:", error.message); 
-    return res.status(500).json({
-      message: "Failed to fetch verified webinars.",
-      error: error.message,
-    });
+  }catch(error){
+    return res.status(500).json({message:"failed to fetch verified webinar"});
   }
 })
 
@@ -1110,7 +1107,7 @@ app.get("/getArticles", async (req, res) => {
     if (decoded.role !== "admin") {
       return res.status(403).json({ message: "Access denied. You do not have the required role." });
     }
-
+[]
     const articles = await Article.find({ isSensitive: false });
 
     res.status(200).json({ message: "Articles retrieved successfully", articles });
@@ -1253,12 +1250,8 @@ app.get("/fetchOrgan",async(req,res)=>{
       const organs =await Organ.find().exec();
       return res.status(200).json({message:"organ fetched successfully",organs});
 
-  }catch (error) {
-    console.error("Error in fetching organ details:", error.message); 
-    return res.status(500).json({
-      message: "Error in fetching organ details. Please try again after some time.",
-      error: error.message, 
-    });
+  }catch(error){
+      return res.status(500).json({message:"error in fetching organ details.please try again after some time."})
   }
 
 })
@@ -1385,8 +1378,8 @@ app.put("/approveAppointment/:id", async (req, res) => {
       email: user.email 
     });
   } catch (error) {
-    res.status(500).json({ message: "Error approving appointment or sending email.", error });
-  }
+    res.status(500).json({ message: "Error approving appointment or sending email.", error });
+  }
 });
 
 
@@ -1486,12 +1479,9 @@ app.get("/getAllRequestedOrgan",async(req,res)=>{
     return res.status(200).json({message:"pending request organ retrieved successfully",requests});
 
 
-  }catch (error) {
-    console.error("Error occurred:", error.message); 
-    return res.status(500).json({
-      message: "Some error occurred. Please try again after some time.",
-      error: error.message, 
-    });
+  }catch(error){
+    return res.status(500).json({message:"some error occured.please try again after some time"});
+
   }
 
 })
@@ -1548,8 +1538,8 @@ app.put("/approveRequest/:id", async (req, res) => {
       email: user.email 
     });
   } catch (error) {
-    res.status(500).json({ message: "Error approving request or sending email.", error });
-  }
+    res.status(500).json({ message: "Error approving request or sending email.", error });
+  }
 });
 
 
@@ -1559,7 +1549,7 @@ app.put("/approveRequest/:id", async (req, res) => {
 
 
 // Start the server
-const PORT = 10000;
+const PORT = 5000;
 server.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
 });

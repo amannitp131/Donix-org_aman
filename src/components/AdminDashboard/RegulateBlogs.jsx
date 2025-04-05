@@ -17,7 +17,7 @@ const RegulateBlogs = () => {
     const fetchArticles = async () => {
       try {
         const token = Cookies.get("token");
-        const response = await axios.get("https://donix-org-aman.onrender.com/getArticles", {
+        const response = await axios.get("http://localhost:10000/getArticles", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,7 +37,7 @@ const RegulateBlogs = () => {
     try {
       const token = Cookies.get("token");
       const response = await axios.put(
-        `https://donix-org-aman.onrender.com/updateSensitive?id=${articleId}`,
+        `http://localhost:10000/updateSensitive?id=${articleId}`,
         {},
         {
           headers: {

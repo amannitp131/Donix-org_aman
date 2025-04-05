@@ -47,7 +47,7 @@ export default function Account() {
           return;
         }
 
-        const response = await fetch("https://donix-org-aman.onrender.com/getDetails", {
+        const response = await fetch("http://localhost:10000/getDetails", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -84,7 +84,7 @@ export default function Account() {
         }
 
         // Make the API request to fetch user blogs
-        const response = await fetch("https://donix-org-aman.onrender.com/getUserBlogs", {
+        const response = await fetch("http://localhost:10000/getUserBlogs", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
