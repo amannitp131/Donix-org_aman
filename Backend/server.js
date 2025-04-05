@@ -46,11 +46,21 @@ const Appointment = require("./models/appointment");
 const OrganRequest = require("./models/OrganRequest");
 
 
+
+
+const allowedOrigins = ["http://localhost:64247", "https://donix-org-aman.vercel.app/"]; // Add your frontend's origin
 app.use(
   cors({
-    origin: "*", 
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Allow cookies if needed
+    credentials: true, // Allow cookies and credentials
+    allowedHeaders: ["Content-Type", "Authorization"], // Allow necessary headers
   })
 );
 
