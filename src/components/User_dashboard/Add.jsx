@@ -25,7 +25,7 @@ const Add = () => {
 
     const fetchHospitals = async () => {
       try {
-        const response = await fetch("http://localhost:10000/allHospitals");
+        const response = await fetch("https://donix-org-aman.onrender.com/allHospitals");
         if (!response.ok) {
           throw new Error("Failed to fetch hospitals");
         }
@@ -47,7 +47,7 @@ const Add = () => {
         }
 
         const response = await axios.post(
-          "http://localhost:10000/getDetails",
+          "https://donix-org-aman.onrender.com/getDetails",
           {},
           {
             headers: {
@@ -76,7 +76,7 @@ const Add = () => {
       }
 
       const response = await axios.post(
-        "http://localhost:10000/bookAppointment",
+        "https://donix-org-aman.onrender.com/bookAppointment",
         {
           name: userName,
           organ: organName,

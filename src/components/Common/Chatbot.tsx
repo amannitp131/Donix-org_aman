@@ -26,7 +26,7 @@ const ChatBot: React.FC = () => {
     setBotTypingMessage("Chatbot is typing...");
 
     try {
-      const response = await axios.post("http://localhost:10000/predicts", {
+      const response = await axios.post("https://donix-org-aman.onrender.com/predicts", {
         message: userMessage,
         language: "English",
         session_id: "12345",

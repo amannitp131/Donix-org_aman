@@ -32,7 +32,7 @@ const Page: React.FC = () => {
     // Fetch blogs from the backend
     const fetchBlogs = async () => {
       try {
-        const response = await fetch("http://localhost:10000/getAllBlogs");
+        const response = await fetch("https://donix-org-aman.onrender.com/getAllBlogs");
         if (!response.ok) {
           const errorData = await response.json();
           throw new Error(errorData.message || "Failed to fetch blogs.");
