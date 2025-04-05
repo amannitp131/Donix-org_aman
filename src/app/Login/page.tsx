@@ -5,6 +5,7 @@ import { FaSpinner } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import { FaSignInAlt } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -16,61 +17,54 @@ const Login: React.FC = () => {
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkMode");
     setDarkMode(storedDarkMode === "1");
-  }, []);
+  }, [])
 
-  const handleLogin = async () => {
-    if (!email || !password || !role) {
-      toast.error("Please fill in all fields.");
-      return;
-    }
-  
-    setLoading(true);
-    try {
-      const response = await fetch("https://donix-org-aman.onrender.com/login", {
-        method: "POST",
+const handleLogin = async () => {
+  if (!email || !password || !role) {
+    toast.error("Please fill in all fields.");
+    return;
+  }
+
+  setLoading(true);
+  try {
+    const response = await axios.post(
+      "https://donix-org-aman.onrender.com/login",
+      { email, password, role },
+      {
         headers: {
           "Content-Type": "application/json",
         },
-        credentials: "include",
-        body: JSON.stringify({ email, password, role }),
-      });
-  
-      if (!response.ok) {
-        const errorData = await response.json();
-        toast.error(`Login failed: ${errorData.error || "Unknown error"}`);
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 3000); // Redirect to `/` after 3 seconds
-        setLoading(false);
-        return;
+        withCredentials: true, // Include cookies and credentials
       }
-  
-      const data = await response.json();
-      Cookies.set("token", data.token, {
-        expires: 7,
-        path: "/",
-        sameSite: "strict",
-      });
-      localStorage.setItem("user", JSON.stringify(data.user));
-      localStorage.setItem("role", JSON.stringify(role));
-      toast.success("Login successful!");
-      if (role === "user") {
-        window.location.href = "/dashboard";
-      } else if (role === "hospital") {
-        window.location.href = "/hospitalDashboard";
-      } else if (role === "admin") {
-        window.location.href = "/AdminDashboard";
-      }
-    } catch (error) {
-      console.error("Error during login:", error);
-      toast.error("An error occurred. Redirecting to the home page...");
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 3000); // Redirect to `/` after 3 seconds
-    } finally {
-      setLoading(false);
+    );
+
+    const data = response.data;
+
+    Cookies.set("token", data.token, {
+      expires: 7,
+      path: "/",
+      sameSite: "strict",
+    });
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("role", JSON.stringify(role));
+    toast.success("Login successful!");
+
+    if (role === "user") {
+      window.location.href = "/dashboard";
+    } else if (role === "hospital") {
+      window.location.href = "/hospitalDashboard";
+    } else if (role === "admin") {
+      window.location.href = "/AdminDashboard";
     }
-  };
+  } catch (error) {
+    console.error("Error during login:", error);
+    const errorMessage =
+      error.response?.data?.error || "An error occurred. Please try again.";
+    toast.error(`Login failed: ${errorMessage}`);
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <div
       className={`min-h-screen flex justify-center items-center p-4 md:p-8 transition-colors duration-300 ${
