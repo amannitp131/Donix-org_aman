@@ -75,9 +75,10 @@ Donix is an advanced organ donation and recipient matching platform designed to 
 
 #### **Clone the Repository**
 ```bash
-git clone <repository-url>
+git clone https://github.com/amannitp131/Donix-org_aman.git
 
 Frontend Setup
+
 npm install
 npm run dev
 
