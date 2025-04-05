@@ -103,7 +103,7 @@ const Footer: React.FC<FooterProps> = ({ darkMode }) => {
             <div>
               <div className="mb-4">
                 <Image
-                  src="/footer.jpeg"
+                  src="https://i.postimg.cc/8kdzwwx4/pngwing-com.png"
                   alt="Logo"
                   width={150}
                   height={75}
