@@ -24,7 +24,7 @@ const Profile = () => {
         if (!token) throw new Error("No token found");
 
         const response = await axios.post(
-          "http://localhost:5000/getDetails",
+          "https://donix-org-aman.onrender.com/getDetails",
           {},
           {
             headers: { Authorization: `Bearer ${token}` },

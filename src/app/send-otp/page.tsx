@@ -19,7 +19,7 @@ function OtpForm() {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5000/send-otp", { email });
+      const response = await axios.post("https://donix-org-aman.onrender.com/send-otp", { email });
       toast.success(response.data.message || "OTP sent successfully to your email!");
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -44,7 +44,7 @@ function OtpForm() {
 
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:5000/verify-otp", { email, otp });
+      const response = await axios.post("https://donix-org-aman.onrender.com/verify-otp", { email, otp });
       toast.success(response.data.message || "OTP verified successfully!");
       // Redirect to the next page after successful verification
       setTimeout(() => {

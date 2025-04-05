@@ -21,7 +21,7 @@ const AddEvent = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/admin/webinar", {
+        const response = await axios.get("https://donix-org-aman.onrender.com/admin/webinar", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -47,7 +47,7 @@ const AddEvent = () => {
       }
 
       const response = await axios.put(
-        `http://localhost:5000/admin/webinar/verify?webinarId=${webinarId}`,
+        `https://donix-org-aman.onrender.com/admin/webinar/verify?webinarId=${webinarId}`,
         {},
         {
           headers: {

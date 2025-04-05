@@ -17,7 +17,7 @@ const VerifyHospital = () => {
     const fetchHospitals = async () => {
       try {
         const token = Cookies.get("token");
-        const response = await axios.get("http://localhost:5000/admin/hospitals", {
+        const response = await axios.get("https://donix-org-aman.onrender.com/admin/hospitals", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,7 +37,7 @@ const VerifyHospital = () => {
     try {
       const token = Cookies.get("token");
       const response = await axios.put(
-        `http://localhost:5000/admin/hospital/verify?hospitalId=${hospitalId}`,
+        `https://donix-org-aman.onrender.com/admin/hospital/verify?hospitalId=${hospitalId}`,
         {},
         {
           headers: {

@@ -30,7 +30,7 @@ export default function WebinarPage() {
     // Fetch verified webinars from the backend
     const fetchWebinars = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/getVerifiedWebinar");
+        const response = await axios.get("https://donix-org-aman.onrender.com/getVerifiedWebinar");
         setWebinars(response.data.verifiedWebinar || []);
         setLoading(false);
       } catch (error) {

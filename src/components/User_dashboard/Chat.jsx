@@ -6,7 +6,7 @@ import jwt from "jsonwebtoken";
 import "../../global.css";
 import { IoChevronBackCircleSharp, IoChevronBackCircleOutline } from "react-icons/io5";
 
-const socket = io("http://localhost:5000", { transports: ["websocket"] });
+const socket = io("https://donix-org-aman.onrender.com", { transports: ["websocket"] });
 
 function ChatApp() {
   const [totalUsersList, setTotalUsersList] = useState([]);
@@ -42,7 +42,7 @@ function ChatApp() {
   // Fetch users and set up socket listeners
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/users/get-all")
+      .get("https://donix-org-aman.onrender.com/api/users/get-all")
       .then((response) => setTotalUsersList(response.data))
       .catch((error) => console.error("Error fetching users:", error));
 
@@ -83,7 +83,7 @@ function ChatApp() {
     }
 
     try {
-      const response = await axios.get("http://localhost:5000/api/users/chat-history", {
+      const response = await axios.get("https://donix-org-aman.onrender.com/api/users/chat-history", {
         params: { receiverId: userId, senderId },
       });
       setCurrentClickedUser(response.data);
@@ -113,7 +113,7 @@ function ChatApp() {
 
     try {
       // Send message to the server
-      const response = await axios.post("http://localhost:5000/api/users/message-send", newMessage);
+      const response = await axios.post("https://donix-org-aman.onrender.com/api/users/message-send", newMessage);
 
       // Emit message to the socket
       socket.emit("sendMessage", response.data.chatMessage);

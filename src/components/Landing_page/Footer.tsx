@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ darkMode }) => {
     setStatus(null);
 
     try {
-      const response = await fetch("http://localhost:5000/sendMail", {
+      const response = await fetch("https://donix-org-aman.onrender.com/sendMail", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

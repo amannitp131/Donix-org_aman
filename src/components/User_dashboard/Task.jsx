@@ -30,7 +30,7 @@ export const Task = () => {
     setResponse(null);
 
     try {
-      const res = await fetch("http://localhost:5000/process_feedback", {
+      const res = await fetch("https://donix-org-aman.onrender.com/process_feedback", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
