@@ -5,6 +5,7 @@ import { FaSpinner } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import { FaSignInAlt } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
+import { AxiosError } from "axios";
 import axios from "axios";
 
 const Login: React.FC = () => {
@@ -56,11 +57,16 @@ const handleLogin = async () => {
     } else if (role === "admin") {
       window.location.href = "/AdminDashboard";
     }
-  } catch (error) {
-    console.error("Error during login:", error);
-    const errorMessage =
-      error.response?.data?.error || "An error occurred. Please try again.";
-    toast.error(`Login failed: ${errorMessage}`);
+  }catch (error) {
+    if (error instanceof AxiosError) {
+      console.error("Error during login:", error);
+      const errorMessage =
+        error.response?.data?.error || "An error occurred. Please try again.";
+      toast.error(`Login failed: ${errorMessage}`);
+    } else {
+      console.error("Unexpected error:", error);
+      toast.error("An unexpected error occurred. Please try again.");
+    }
   } finally {
     setLoading(false);
   }
