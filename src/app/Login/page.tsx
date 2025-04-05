@@ -5,8 +5,6 @@ import { FaSpinner } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import { FaSignInAlt } from "react-icons/fa";
 import "react-toastify/dist/ReactToastify.css";
-import { AxiosError } from "axios";
-import axios from "axios";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
